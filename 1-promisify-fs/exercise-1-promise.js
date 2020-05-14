@@ -25,14 +25,15 @@ log(1, filePath);
 const newFileContent = process.argv[3];
 log(2, newFileContent);
 
+log(3, `writing ${fileName} ...`);
 writeFilePromise(filePath, newFileContent)
   .then(() => {
-    log(3, "reading file ...");
+    log(4, "reading file ...");
     readFilePromise(filePath, "utf-8")
       .then((fileContent) => {
-        log(4, "asserting ...");
+        log(5, "asserting ...");
         assert.strictEqual(fileContent, newFileContent);
-        log(5, "\033[32mpass!\x1b[0m");
+        log(6, "\033[32mpass!\x1b[0m");
         // you don't need to refactor this line
         fs.appendFileSync(
           __filename,
